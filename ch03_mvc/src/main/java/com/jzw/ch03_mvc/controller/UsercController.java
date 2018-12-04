@@ -39,9 +39,16 @@ public class UsercController {
     }
 
     @GetMapping("/update.json")
-    public String setUser(@RequestParam(name = "id", required = true)Integer id, String name, Model model){
+    public String setUser(@RequestParam(name = "id", required = true)int id, String name, Model model){
         User user = new User(id,name);
+        System.out.println(user);
         model.addAttribute("user",user);
         return "/userInfo.btl";
+    }
+
+    @PostMapping("/save.json")
+    @ResponseBody
+    public String saveOrderByJson(@RequestBody User user){
+        return user.getName();
     }
 }
